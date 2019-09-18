@@ -17,18 +17,20 @@ class ItemCollection extends Collection {
      *
      * @var
      */
-    protected $config;
+    protected $config = [];
 
     /**
      * ItemCollection constructor.
      * @param array|mixed $items
      * @param $config
      */
-    public function __construct($items, $config)
+    public function __construct($items, $config = [])
     {
         parent::__construct($items);
 
-        $this->config = $config;
+        // keep parent map loop from setting existing config to blank
+        if (!empty($config))
+            $this->config = $config;
     }
 
     /**
